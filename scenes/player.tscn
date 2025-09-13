@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://cvqvbmfsrkfme"]
+[gd_scene load_steps=17 format=3 uid="uid://cvqvbmfsrkfme"]
 
-[ext_resource type="Script" uid="uid://byc25uxfxidxx" path="res://scripts/Player.cs" id="1_yewv4"]
+[ext_resource type="Script" uid="uid://byc25uxfxidxx" path="res://scripts/Player.cs" id="1_qhqgy"]
+[ext_resource type="Script" uid="uid://covq625ch7bo4" path="res://scripts/Hp.cs" id="1_yewv4"]
 [ext_resource type="Texture2D" uid="uid://fhk7ndj8qrls" path="res://assets/Alien_Anims/spritesheet_walking.png" id="2_yewv4"]
 
 [sub_resource type="Animation" id="Animation_dyp2m"]
@@ -323,8 +324,7 @@ size = Vector2(6, 3.1875)
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animationPlayer")]
 collision_layer = 3
 collision_mask = 3
-script = ExtResource("1_yewv4")
-speed = 25
+script = ExtResource("1_qhqgy")
 animationPlayer = NodePath("AnimationPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -334,6 +334,7 @@ texture = ExtResource("2_yewv4")
 hframes = 4
 vframes = 7
 frame = 4
+script = ExtResource("1_yewv4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -350,3 +351,5 @@ shape = SubResource("RectangleShape2D_76oj4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(19, 26.5938)
 shape = SubResource("RectangleShape2D_yewv4")
+
+[connection signal="area_entered" from="Player" to="Sprite2D" method="_on_player_area_entered"]

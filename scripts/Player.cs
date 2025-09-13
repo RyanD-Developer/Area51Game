@@ -4,6 +4,9 @@ using System;
 public partial class Player : CharacterBody2D
 {
 	[Export]
+	private Control[] Images = new Control[6];
+	
+	[Export]
 	private int speed = 50;
 
 	private Vector2 currentVelocity;
@@ -12,6 +15,12 @@ public partial class Player : CharacterBody2D
 	private AnimationPlayer animationPlayer;
 
 	private string direction = "Down";
+
+	public override void _Ready()
+	{
+		base._Ready();
+		GetNode<Hp>("Sprite2D").Images = Images;
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
