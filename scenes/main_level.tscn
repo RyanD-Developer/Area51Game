@@ -1,14 +1,81 @@
-[gd_scene load_steps=3 format=3 uid="uid://blt4knyxy6lxg"]
+[gd_scene load_steps=9 format=3 uid="uid://blt4knyxy6lxg"]
 
-[ext_resource type="PackedScene" uid="uid://cvqvbmfsrkfme" path="res://scenes/characters/player.tscn" id="1_v3uhd"]
+[ext_resource type="Texture2D" uid="uid://ca7eajhhi3ag7" path="res://assets/Lives/IMG_1735.png" id="1_qmak7"]
+[ext_resource type="PackedScene" uid="uid://cvqvbmfsrkfme" path="res://scenes/player.tscn" id="1_v3uhd"]
+[ext_resource type="Texture2D" uid="uid://crmgmb7xposwd" path="res://assets/Lives/IMG_1736.png" id="2_8ra5a"]
 [ext_resource type="PackedScene" uid="uid://ddx7ir8oi0jq6" path="res://scenes/level.tscn" id="2_ufxs0"]
+[ext_resource type="Texture2D" uid="uid://cwo563wvdguy7" path="res://icon.svg" id="5_8ra5a"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bq26l"]
+texture = ExtResource("1_qmak7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u2c82"]
+texture = ExtResource("2_8ra5a")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qmak7"]
 
 [node name="World" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_v3uhd")]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+
+[node name="Panel4" type="Panel" parent="Control"]
+z_index = 3
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_bq26l")
+
+[node name="Panel5" type="Panel" parent="Control"]
+z_index = 3
+layout_mode = 0
+offset_left = 32.0
+offset_right = 72.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_bq26l")
+
+[node name="Panel6" type="Panel" parent="Control"]
+z_index = 3
+layout_mode = 0
+offset_left = 63.0
+offset_right = 103.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_bq26l")
+
+[node name="Panel" type="Panel" parent="Control"]
+z_index = 3
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_u2c82")
+
+[node name="Panel2" type="Panel" parent="Control"]
+z_index = 3
+layout_mode = 0
+offset_left = 32.0
+offset_right = 72.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_u2c82")
+
+[node name="Panel3" type="Panel" parent="Control"]
+z_index = 3
+layout_mode = 0
+offset_left = 63.0
+offset_right = 103.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_u2c82")
+
+[node name="Player" parent="." node_paths=PackedStringArray("Images") instance=ExtResource("1_v3uhd")]
 z_index = 1
 position = Vector2(94, 76)
 disable_mode = 2
+Images = [NodePath("../Control/Panel"), NodePath("../Control/Panel2"), NodePath("../Control/Panel3"), NodePath("../Control/Panel4"), NodePath("../Control/Panel5"), NodePath("../Control/Panel6")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(160, 90)
@@ -16,10 +83,21 @@ position = Vector2(160, 90)
 [node name="Level" parent="." instance=ExtResource("2_ufxs0")]
 
 [node name="Level3" parent="." instance=ExtResource("2_ufxs0")]
-position = Vector2(45, -124)
+position = Vector2(0, -110)
 
 [node name="Level2" parent="." instance=ExtResource("2_ufxs0")]
 position = Vector2(250, 0)
 
 [node name="Level4" parent="." instance=ExtResource("2_ufxs0")]
 position = Vector2(293, -124)
+
+[node name="Flame" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flame"]
+position = Vector2(76, 93)
+shape = SubResource("RectangleShape2D_qmak7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Flame"]
+position = Vector2(76, 93.5)
+scale = Vector2(0.15625, 0.164063)
+texture = ExtResource("5_8ra5a")
