@@ -1,8 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://bu20c5av11nbh"]
+[gd_scene load_steps=26 format=3 uid="uid://cvqvbmfsrkfme"]
 
 [ext_resource type="Script" uid="uid://byc25uxfxidxx" path="res://scripts/Player.cs" id="1_yewv4"]
 [ext_resource type="Texture2D" uid="uid://fhk7ndj8qrls" path="res://assets/Alien_Anims/spritesheet_walking.png" id="2_yewv4"]
 [ext_resource type="Script" uid="uid://covq625ch7bo4" path="res://scripts/Hp.cs" id="3_76oj4"]
+[ext_resource type="Texture2D" uid="uid://c60lpe71isu2o" path="res://assets/RubbleInMoving.png" id="4_dyp2m"]
+[ext_resource type="Texture2D" uid="uid://d0cke77yttvjy" path="res://assets/Rubble.png" id="5_kqtwu"]
+[ext_resource type="Texture2D" uid="uid://cafphwa3kqm0d" path="res://assets/Alien_Anims/Tentacle.png" id="6_6eyoc"]
 
 [sub_resource type="Animation" id="Animation_dyp2m"]
 length = 0.001
@@ -321,6 +324,362 @@ size = Vector2(6, 24.1875)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yewv4"]
 size = Vector2(6, 3.1875)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eojnx"]
+size = Vector2(16, 14)
+
+[sub_resource type="Animation" id="Animation_xhtjm"]
+resource_name = "InMoving"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RubbleMoving:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RubbleMoving/Sprite2D2:position")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1, 1), Vector2(-2, 2), Vector2(-1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RubbleMoving/Sprite2D3:position")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-2, 3), Vector2(-1, 4), Vector2(0, 3), Vector2(-1, 4)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RubbleMoving/Sprite2D3:rotation")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.625949, -0.755595, -0.755595, -0.755595]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RubbleMoving/Sprite2D4:position")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 3), Vector2(2, 2), Vector2(1, 3), Vector2(2, 2)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RubbleMoving/Sprite2D4:rotation")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.731391, 1.58061, 1.58061, 1.58061]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Tentacles:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AnimationPlayer:speed_scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Tentacles/Area2D/CollisionShape2D:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_k4v7y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RubbleMoving:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RubbleMoving/Sprite2D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RubbleMoving/Sprite2D3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, 3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RubbleMoving/Sprite2D3:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.625949]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RubbleMoving/Sprite2D4:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 3)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RubbleMoving/Sprite2D4:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.731391]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Tentacles:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Tentacles/Sprite2D3:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AnimationPlayer:speed_scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Tentacles/Area2D/CollisionShape2D:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_xrqxk"]
+resource_name = "Attacking"
+length = 1.6
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RubbleMoving:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tentacles:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tentacles/Sprite2D3:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 2, 1, 0, 0, 1, 2, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer:speed_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Tentacles/Area2D/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_g66nw"]
+resource_name = "Gone"
+length = 1.6
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RubbleMoving:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tentacles:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tentacles/Area2D/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rpnd8"]
+_data = {
+&"Attacking": SubResource("Animation_xrqxk"),
+&"Gone": SubResource("Animation_g66nw"),
+&"InMoving": SubResource("Animation_xhtjm"),
+&"RESET": SubResource("Animation_k4v7y")
+}
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animationPlayer")]
 collision_layer = 3
 collision_mask = 3
@@ -351,5 +710,56 @@ shape = SubResource("RectangleShape2D_76oj4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(19, 26.5938)
 shape = SubResource("RectangleShape2D_yewv4")
+
+[node name="AttackParent" type="Node2D" parent="."]
+position = Vector2(20, 28)
+
+[node name="RubbleMoving" type="Node2D" parent="AttackParent"]
+position = Vector2(0, 3)
+
+[node name="Sprite2D2" type="Sprite2D" parent="AttackParent/RubbleMoving"]
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("4_dyp2m")
+
+[node name="Sprite2D3" type="Sprite2D" parent="AttackParent/RubbleMoving"]
+position = Vector2(-2, 3)
+rotation = -0.625949
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("4_dyp2m")
+
+[node name="Sprite2D4" type="Sprite2D" parent="AttackParent/RubbleMoving"]
+position = Vector2(2, 3)
+rotation = 0.731391
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("4_dyp2m")
+
+[node name="Tentacles" type="Node2D" parent="AttackParent"]
+position = Vector2(0, -3)
+
+[node name="Sprite2D" type="Sprite2D" parent="AttackParent/Tentacles"]
+position = Vector2(-5, 6.31)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("5_kqtwu")
+
+[node name="Sprite2D2" type="Sprite2D" parent="AttackParent/Tentacles"]
+position = Vector2(5.7, 6.31)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("5_kqtwu")
+
+[node name="Sprite2D3" type="Sprite2D" parent="AttackParent/Tentacles"]
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("6_6eyoc")
+hframes = 4
+
+[node name="Area2D" type="Area2D" parent="AttackParent/Tentacles"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackParent/Tentacles/Area2D"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_eojnx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AttackParent"]
+libraries = {
+&"": SubResource("AnimationLibrary_rpnd8")
+}
 
 [connection signal="area_entered" from="Player" to="Sprite2D" method="_on_player_area_entered"]
