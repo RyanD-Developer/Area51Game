@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cvqvbmfsrkfme"]
+[gd_scene load_steps=17 format=3 uid="uid://bu20c5av11nbh"]
 
 [ext_resource type="Script" uid="uid://byc25uxfxidxx" path="res://scripts/Player.cs" id="1_yewv4"]
 [ext_resource type="Texture2D" uid="uid://fhk7ndj8qrls" path="res://assets/Alien_Anims/spritesheet_walking.png" id="2_yewv4"]
