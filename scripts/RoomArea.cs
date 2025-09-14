@@ -6,9 +6,12 @@ public partial class RoomArea : Area2D
 {
 	[Export]
 	private Vector2 cameraTargetPosition;
+	[Export]
+	private float transitionSpeed = 2.0f;
 
 	private static RoomArea current_collision;
 	private RoomArea previous_collision;
+	private Camera2D camera;
 
 	public override void _Ready()
 	{
@@ -24,6 +27,8 @@ public partial class RoomArea : Area2D
 				current_collision.GetParent<Sprite2D>().Modulate = Color.Color8(255, 255, 255, 255);
 			}
 		}
+		cameraTargetPosition = new Vector2(this.GlobalPosition.X, this.GlobalPosition.Y - 20f);
+		camera = GetViewport().GetCamera2D();
 	}
 
 
@@ -35,13 +40,19 @@ public partial class RoomArea : Area2D
 			current_collision = this;
 			if (previous_collision != null)
 			{
-				previous_collision.GetParent<Sprite2D>().Modulate = Color.Color8(255, 255, 255, 0);
+				//previous_collision.GetParent<Sprite2D>().Modulate = Color.Color8(255, 255, 255, 0);
+				Tween tweenColorPrevious = GetTree().CreateTween();
+				tweenColorPrevious.TweenProperty(previous_collision.GetParent<Sprite2D>(), "modulate", Color.Color8(255, 255, 255, 0), transitionSpeed);
 			}
-			current_collision.GetParent<Sprite2D>().Modulate = Color.Color8(255, 255, 255, 255);
-			GetViewport().GetCamera2D().Position = new Vector2(current_collision.GlobalPosition.X, current_collision.GlobalPosition.Y - 20f);
+			//current_collision.GetParent<Sprite2D>().Modulate = Color.Color8(255, 255, 255, 255);
+			Tween tweenColor = GetTree().CreateTween();
+			tweenColor.TweenProperty(current_collision.GetParent<Sprite2D>(), "modulate", Color.Color8(255, 255, 255, 255), transitionSpeed);
+			//camera.Position = new Vector2(current_collision.GlobalPosition.X, current_collision.GlobalPosition.Y - 20f);
+			Tween tween = GetTree().CreateTween();
+			tween.TweenProperty(camera, "position", cameraTargetPosition, transitionSpeed);
 		}
 	}
-	public void _on_body_exited(Node Body)
+	public void _on_body_exited(Node body)
 	{
 		if (current_collision == this)
 		{
@@ -52,10 +63,13 @@ public partial class RoomArea : Area2D
 			previous_collision = this;
 			if (previous_collision != null)
 			{
-				previous_collision.GetParent<Sprite2D>().Modulate = Color.Color8(255, 255, 255, 0);
+				Tween tweenColorPrevious = GetTree().CreateTween();
+				tweenColorPrevious.TweenProperty(previous_collision.GetParent<Sprite2D>(), "modulate", Color.Color8(255, 255, 255, 0), transitionSpeed);
 			}
-			current_collision.GetParent<Sprite2D>().Modulate = Color.Color8(255, 255, 255, 255);
-			GetViewport().GetCamera2D().Position = new Vector2(current_collision.GlobalPosition.X, current_collision.GlobalPosition.Y - 20f);
+			Tween tweenColor = GetTree().CreateTween();
+			tweenColor.TweenProperty(current_collision.GetParent<Sprite2D>(), "modulate", Color.Color8(255, 255, 255, 255), transitionSpeed);
+			Tween tween = GetTree().CreateTween();
+			tween.TweenProperty(camera, "position", cameraTargetPosition, transitionSpeed);
 		}
 	}
 
@@ -67,10 +81,16 @@ public partial class RoomArea : Area2D
 			current_collision = this;
 			if (previous_collision != null)
 			{
-				previous_collision.GetParent<Sprite2D>().Modulate = Color.Color8(255, 255, 255, 0);
+				//previous_collision.GetParent<Sprite2D>().Modulate = Color.Color8(255, 255, 255, 0);
+				Tween tweenColorPrevious = GetTree().CreateTween();
+				tweenColorPrevious.TweenProperty(previous_collision.GetParent<Sprite2D>(), "modulate", Color.Color8(255, 255, 255, 0), transitionSpeed);
 			}
-			current_collision.GetParent<Sprite2D>().Modulate = Color.Color8(255, 255, 255, 255);
-			GetViewport().GetCamera2D().Position = new Vector2(current_collision.GlobalPosition.X, current_collision.GlobalPosition.Y - 20f);
+			//current_collision.GetParent<Sprite2D>().Modulate = Color.Color8(255, 255, 255, 255);
+			Tween tweenColor = GetTree().CreateTween();
+			tweenColor.TweenProperty(current_collision.GetParent<Sprite2D>(), "modulate", Color.Color8(255, 255, 255, 255), transitionSpeed);
+			//camera.Position = new Vector2(current_collision.GlobalPosition.X, current_collision.GlobalPosition.Y - 20f);
+			Tween tween = GetTree().CreateTween();
+			tween.TweenProperty(camera, "position", cameraTargetPosition, transitionSpeed);
 		}
 	}
 }
