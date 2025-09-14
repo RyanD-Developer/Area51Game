@@ -26,6 +26,8 @@ window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
+mouse_cursor/custom_image="uid://l3fdl47w8ob8"
+mouse_cursor/custom_image_hotspot=Vector2(11, 23)
 
 [dotnet]
 

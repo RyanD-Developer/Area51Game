@@ -5,16 +5,23 @@ public partial class Player : CharacterBody2D
 {
 	[Export]
 	private Control[] Images = new Control[6];
-	
+
 	[Export]
 	private int speed = 50;
 
 	private Vector2 currentVelocity;
-
+	private bool isAttacking;
+	private bool mouseDown;
+	private bool isOverlapped = false;
 	[Export]
 	private AnimationPlayer animationPlayer;
 
 	private string direction = "Down";
+
+	[Export]
+	private Node2D attackParent;
+	[Export]
+	private AnimationPlayer attackAnimator;
 
 	public override void _Ready()
 	{
@@ -32,15 +39,52 @@ public partial class Player : CharacterBody2D
 
 		handleInput();
 
-		Velocity = currentVelocity;
-		MoveAndSlide();
-		updateAnimation();
+		if (!isAttacking)
+		{
+			Velocity = currentVelocity;
+			MoveAndSlide();
+			updateAnimation();
+		}
+		else
+		{
+			handleAttacking();
+		}
+	}
+
+	private void handleAttacking()
+	{
+		if (mouseDown)
+		{
+			if (!isOverlapped)
+			{
+				Tween tween;
+				tween.TweenProperty(attackParent, "position", GetViewport().GetMousePosition(), 0.75);
+			}
+			else
+			{
+				attackParent.position = new Vector2(0f,0f);
+				//GetViewport().GetMousePosition();
+			}
+			if (attackParent.position == GetViewport().GetMousePosition())
+			{
+				isOverlapped = false;
+			}
+		}
+		else
+		{
+
+		}
 	}
 
 	private void handleInput()
 	{
 		currentVelocity = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 		currentVelocity *= speed;
+		mouseDown = Input.IsActionPressed("ui_accept");
+		if (mouseDown)
+		{
+			isAttacking = true;
+		}
 	}
 
 	private void updateAnimation()
