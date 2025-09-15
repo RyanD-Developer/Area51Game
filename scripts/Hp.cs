@@ -4,7 +4,7 @@ using Godot.Collections;
 
 public partial class Hp : Node
 {
-	private int lives = 3;
+	public int lives = 3;
 
 	public Control[] Images = new Control[6];
 	

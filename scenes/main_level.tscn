@@ -1,10 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://blt4knyxy6lxg"]
+[gd_scene load_steps=13 format=3 uid="uid://blt4knyxy6lxg"]
 
+[ext_resource type="Script" uid="uid://dfav1tscpmjqe" path="res://scripts/MainLevel.cs" id="1_bq26l"]
 [ext_resource type="Texture2D" uid="uid://ca7eajhhi3ag7" path="res://assets/Lives/IMG_1735.png" id="1_qmak7"]
 [ext_resource type="Texture2D" uid="uid://crmgmb7xposwd" path="res://assets/Lives/IMG_1736.png" id="2_8ra5a"]
-[ext_resource type="PackedScene" uid="uid://ddx7ir8oi0jq6" path="res://scenes/level.tscn" id="2_ufxs0"]
-[ext_resource type="PackedScene" uid="uid://cvqvbmfsrkfme" path="res://scenes/player.tscn" id="3_8ra5a"]
-[ext_resource type="Texture2D" uid="uid://cwo563wvdguy7" path="res://icon.svg" id="5_8ra5a"]
+[ext_resource type="PackedScene" uid="uid://cvqvbmfsrkfme" path="res://scenes/characters/player.tscn" id="3_8ra5a"]
+[ext_resource type="PackedScene" uid="uid://bchsu1x14p8ue" path="res://scenes/PauseMenu.tscn" id="5_u2c82"]
+[ext_resource type="AudioStream" uid="uid://bbobamt8xkd8j" path="res://resources/the lab.wav" id="6_bq26l"]
+[ext_resource type="PackedScene" uid="uid://dxdgqbuia83rn" path="res://scenes/levels/level_Top_Right.tscn" id="6_k5pu3"]
+[ext_resource type="PackedScene" uid="uid://bhyee13u00xtf" path="res://scenes/levels/level_Left.tscn" id="8_5fr2l"]
+[ext_resource type="PackedScene" uid="uid://hf3v7wkpoivm" path="res://scenes/levels/level_Right_bottom.tscn" id="9_2sb77"]
+[ext_resource type="PackedScene" uid="uid://d6f048x4utxe" path="res://scenes/level_win.tscn" id="10_fkrx8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bq26l"]
 texture = ExtResource("1_qmak7")
@@ -12,15 +17,16 @@ texture = ExtResource("1_qmak7")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u2c82"]
 texture = ExtResource("2_8ra5a")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qmak7"]
+[node name="World" type="Node2D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_bq26l")
+player = NodePath("Player")
 
-[node name="World" type="Node2D"]
-
-[node name="Player" parent="." node_paths=PackedStringArray("Images") instance=ExtResource("3_8ra5a")]
+[node name="Player" parent="." node_paths=PackedStringArray("Images", "currentRoom") instance=ExtResource("3_8ra5a")]
 z_index = 1
 position = Vector2(94, 76)
 Images = [NodePath("../Camera2D/Control/Panel"), NodePath("../Camera2D/Control/Panel2"), NodePath("../Camera2D/Control/Panel3"), NodePath("../Camera2D/Control/Panel4"), NodePath("../Camera2D/Control/Panel5"), NodePath("../Camera2D/Control/Panel6")]
 speed = 25
+currentRoom = NodePath("../Area2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(160, 90)
@@ -84,28 +90,33 @@ offset_right = 103.0
 offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_u2c82")
 
-[node name="Level" parent="." node_paths=PackedStringArray("playerNode") instance=ExtResource("2_ufxs0")]
+[node name="CanvasLayer" parent="Camera2D" instance=ExtResource("5_u2c82")]
+process_mode = 3
+physics_interpolation_mode = 1
+visible = false
+follow_viewport_enabled = true
+
+[node name="Area2D" parent="." node_paths=PackedStringArray("playerNode") instance=ExtResource("6_k5pu3")]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 0)
 playerNode = NodePath("../Player")
 
-[node name="Level3" parent="." node_paths=PackedStringArray("playerNode") instance=ExtResource("2_ufxs0")]
-position = Vector2(43, -124)
-playerNode = NodePath("../Player")
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_bq26l")
+autoplay = true
 
-[node name="Level2" parent="." node_paths=PackedStringArray("playerNode") instance=ExtResource("2_ufxs0")]
+[node name="Area2D2" parent="." node_paths=PackedStringArray("playerNode") instance=ExtResource("8_5fr2l")]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(250, 0)
 playerNode = NodePath("../Player")
 
-[node name="Level4" parent="." node_paths=PackedStringArray("playerNode") instance=ExtResource("2_ufxs0")]
-position = Vector2(293, -124)
+[node name="Area2D3" parent="." node_paths=PackedStringArray("playerNode") instance=ExtResource("9_2sb77")]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(43, -124)
 playerNode = NodePath("../Player")
 
-[node name="Flame" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Flame"]
-position = Vector2(76, 93)
-shape = SubResource("RectangleShape2D_qmak7")
-
-[node name="Sprite2D" type="Sprite2D" parent="Flame"]
-position = Vector2(76, 93.5)
-scale = Vector2(0.15625, 0.164063)
-texture = ExtResource("5_8ra5a")
+[node name="Area2D4" parent="." node_paths=PackedStringArray("playerNode") instance=ExtResource("10_fkrx8")]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(293, -124)
+playerNode = NodePath("../Player")
+winningRoom = true

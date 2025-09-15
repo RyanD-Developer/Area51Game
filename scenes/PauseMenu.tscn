@@ -1,0 +1,132 @@
+[gd_scene load_steps=8 format=3 uid="uid://bchsu1x14p8ue"]
+
+[ext_resource type="FontFile" uid="uid://b44pa8tcdcssd" path="res://Super Trend.ttf" id="1_komsw"]
+[ext_resource type="Script" uid="uid://dqatxrdon71n3" path="res://scripts/PauseMenu.cs" id="2_komsw"]
+
+[sub_resource type="Theme" id="Theme_0ykhv"]
+default_font = ExtResource("1_komsw")
+default_font_size = 50
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ykhv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ykhv"]
+bg_color = Color(0, 0, 0.568627, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ow34m"]
+bg_color = Color(0, 0, 0.372549, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2wh52"]
+bg_color = Color(0, 0, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("_pauseMenu")]
+script = ExtResource("2_komsw")
+_pauseMenu = NodePath(".")
+
+[node name="PauseMenu" type="Control" parent="."]
+texture_filter = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2880.0
+offset_bottom = 1620.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+theme = SubResource("Theme_0ykhv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -475.0
+offset_top = -375.0
+offset_right = 475.0
+offset_bottom = 375.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="Button" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0ykhv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ow34m")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2wh52")
+text = "Resume
+"
+
+[node name="Button3" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0ykhv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ow34m")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2wh52")
+text = "Exit"
+
+[node name="Label" type="Label" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -458.0
+offset_top = -620.0
+offset_right = 459.0
+offset_bottom = -410.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = -30
+theme_override_constants/outline_size = 150
+theme_override_constants/shadow_outline_size = 100
+theme_override_font_sizes/font_size = 150
+text = "Paused"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="PauseMenu/VBoxContainer/Button" to="." method="OnResumeButtonPressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/Button3" to="." method="OnQuitButtonPressed"]

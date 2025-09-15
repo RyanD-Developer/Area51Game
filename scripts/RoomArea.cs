@@ -12,11 +12,16 @@ public partial class RoomArea : Area2D
 	private CollisionPolygon2D areaShape;
 	[Export]
 	private Player playerNode;
+	[Export]
+	private bool winningRoom;
 
 	private static RoomArea current_collision;
 	private RoomArea previous_collision;
+	[Export]
+	public Sprite2D sprite;
 	private Camera2D camera;
 	private List<Sparky> sparkies = new List<Sparky>();
+	private List<Bulletin> bulletins = new List<Bulletin>();
 
 	public override void _Ready()
 	{
@@ -24,15 +29,12 @@ public partial class RoomArea : Area2D
 
 		var overlappingBodies = GetOverlappingBodies();
 
-		foreach (Node body in overlappingBodies)
+		if(playerNode.currentRoom == this)
 		{
-			if (body.Name == "Player")
-			{
-				current_collision = this;
-				current_collision.GetParent<Sprite2D>().Modulate = Color.Color8(255, 255, 255, 255);
-			}
+			current_collision = this;
+			current_collision.Modulate = Color.Color8(255, 255, 255, 255);
 		}
-		foreach (Node child in GetParent().GetChildren())
+		foreach (Node child in GetChildren())
 		{
 			if (child is Sparky sparkyNode)
 			{
@@ -44,7 +46,19 @@ public partial class RoomArea : Area2D
 			sparky.boundaries = areaShape.GetPolygon();
 			sparky.player = playerNode;
 		}
-		cameraTargetPosition = new Vector2(this.GlobalPosition.X, this.GlobalPosition.Y - 20f);
+		foreach (Node child in GetChildren())
+		{
+			if (child is Bulletin bulletinNode)
+			{
+				bulletins.Add(bulletinNode);
+			}
+		}
+		foreach (Bulletin bulletin in bulletins)
+		{
+			bulletin.boundaries = areaShape.GetPolygon();
+			bulletin.player = playerNode;
+		}
+		cameraTargetPosition = new Vector2(this.GlobalPosition.X + 160, this.GlobalPosition.Y + 85f);
 		camera = GetViewport().GetCamera2D();
 	}
 
@@ -53,23 +67,31 @@ public partial class RoomArea : Area2D
 	{
 		if (body.Name == "Player")
 		{
+			if(winningRoom)
+			{
+				GetTree().ChangeSceneToFile("res://scenes//win_screen.tscn");
+			}
 			previous_collision = current_collision;
 			current_collision = this;
 			if (previous_collision != null)
 			{
 				//previous_collision.GetParent<Sprite2D>().Modulate = Color.Color8(255, 255, 255, 0);
 				Tween tweenColorPrevious = GetTree().CreateTween();
-				tweenColorPrevious.TweenProperty(previous_collision.GetParent<Sprite2D>(), "modulate", Color.Color8(255, 255, 255, 0), transitionSpeed);
+				tweenColorPrevious.TweenProperty(previous_collision, "modulate", Color.Color8(255, 255, 255, 0), transitionSpeed);
 			}
 			//current_collision.GetParent<Sprite2D>().Modulate = Color.Color8(255, 255, 255, 255);
 			Tween tweenColor = GetTree().CreateTween();
-			tweenColor.TweenProperty(current_collision.GetParent<Sprite2D>(), "modulate", Color.Color8(255, 255, 255, 255), transitionSpeed);
+			tweenColor.TweenProperty(current_collision, "modulate", Color.Color8(255, 255, 255, 255), transitionSpeed);
 			//camera.Position = new Vector2(current_collision.GlobalPosition.X, current_collision.GlobalPosition.Y - 20f);
 			Tween tween = GetTree().CreateTween();
 			tween.TweenProperty(camera, "position", cameraTargetPosition, transitionSpeed);
-			foreach(Sparky sparky in sparkies)
+			foreach (Sparky sparky in sparkies)
 			{
 				sparky.isOn = true;
+			}
+			foreach (Bulletin bulletin in bulletins)
+			{
+				bulletin.isOn = true;
 			}
 		}
 	}
@@ -85,39 +107,23 @@ public partial class RoomArea : Area2D
 			if (previous_collision != null)
 			{
 				Tween tweenColorPrevious = GetTree().CreateTween();
-				tweenColorPrevious.TweenProperty(previous_collision.GetParent<Sprite2D>(), "modulate", Color.Color8(255, 255, 255, 0), transitionSpeed);
+				tweenColorPrevious.TweenProperty(previous_collision, "modulate", Color.Color8(255, 255, 255, 0), transitionSpeed);
 			}
 			Tween tweenColor = GetTree().CreateTween();
-			tweenColor.TweenProperty(current_collision.GetParent<Sprite2D>(), "modulate", Color.Color8(255, 255, 255, 255), transitionSpeed);
+			tweenColor.TweenProperty(current_collision, "modulate", Color.Color8(255, 255, 255, 255), transitionSpeed);
 			Tween tween = GetTree().CreateTween();
 			tween.TweenProperty(camera, "position", cameraTargetPosition, transitionSpeed);
 		}
-		if(body.Name == "Player"){
-		foreach(Sparky sparky in sparkies)
-		{
-			sparky.isOn = false;
-		}
-		}
-	}
-
-	public void _on_area_entered(Area2D body)
-	{
 		if (body.Name == "Player")
 		{
-			previous_collision = current_collision;
-			current_collision = this;
-			if (previous_collision != null)
+			foreach (Sparky sparky in sparkies)
 			{
-				//previous_collision.GetParent<Sprite2D>().Modulate = Color.Color8(255, 255, 255, 0);
-				Tween tweenColorPrevious = GetTree().CreateTween();
-				tweenColorPrevious.TweenProperty(previous_collision.GetParent<Sprite2D>(), "modulate", Color.Color8(255, 255, 255, 0), transitionSpeed);
+				sparky.isOn = false;
 			}
-			//current_collision.GetParent<Sprite2D>().Modulate = Color.Color8(255, 255, 255, 255);
-			Tween tweenColor = GetTree().CreateTween();
-			tweenColor.TweenProperty(current_collision.GetParent<Sprite2D>(), "modulate", Color.Color8(255, 255, 255, 255), transitionSpeed);
-			//camera.Position = new Vector2(current_collision.GlobalPosition.X, current_collision.GlobalPosition.Y - 20f);
-			Tween tween = GetTree().CreateTween();
-			tween.TweenProperty(camera, "position", cameraTargetPosition, transitionSpeed);
+			foreach (Bulletin bulletin in bulletins)
+			{
+				bulletin.isOn = false;
+			}
 		}
 	}
 }

@@ -1,0 +1,138 @@
+[gd_scene load_steps=17 format=3 uid="uid://hf3v7wkpoivm"]
+
+[ext_resource type="Script" uid="uid://3a7uovlsrldf" path="res://scripts/RoomArea.cs" id="1_k1ymv"]
+[ext_resource type="Texture2D" uid="uid://c8qokarewj1v8" path="res://assets/Environment/Floor/IMG_1693.png" id="2_r2avm"]
+[ext_resource type="Texture2D" uid="uid://badkxuintfk1t" path="res://assets/Environment/Walls/IMG_1694.png" id="3_y6ffq"]
+[ext_resource type="Texture2D" uid="uid://b7kro5xcsi3d6" path="res://assets/Environment/Walls/IMG_1695.png" id="8_nhtlm"]
+[ext_resource type="Texture2D" uid="uid://bca5tucc4tvan" path="res://assets/Environment/Walls/Wall-Props/IMG_1699.png" id="16_6280n"]
+[ext_resource type="Texture2D" uid="uid://cgk3y3jmtqyuw" path="res://assets/Environment/Doors/IMG_1697.png" id="17_e1pub"]
+[ext_resource type="Texture2D" uid="uid://ct1hr556ts0e2" path="res://assets/Environment/Doors/IMG_1696.png" id="18_oy7y0"]
+[ext_resource type="PackedScene" uid="uid://ccsqp1j1yi2a4" path="res://scenes/characters/sparky.tscn" id="19_ibohm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8c41q"]
+size = Vector2(895.08, 10.5505)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_olg7q"]
+size = Vector2(1077.73, 6.02448)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5kpae"]
+size = Vector2(634.61, 10.5505)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtjml"]
+size = Vector2(751.798, 10.9597)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mx8sn"]
+size = Vector2(1554.22, 14.3915)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8iemx"]
+size = Vector2(1012.78, 4.40404)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64w2a"]
+size = Vector2(1601.67, 4.68552)
+
+[sub_resource type="AudioStream" id="AudioStream_8gofh"]
+
+[node name="Area2D" type="Area2D" node_paths=PackedStringArray("areaShape", "sprite")]
+position = Vector2(0, -7.14936e-06)
+disable_mode = 1
+script = ExtResource("1_k1ymv")
+cameraTargetPosition = Vector2(160, 85)
+areaShape = NodePath("CollisionPolygon2D")
+sprite = NodePath("Level/Floor/Leftwall")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(160, 105)
+scale = Vector2(0.083, 0.083)
+polygon = PackedVector2Array(-1048.19, -722.891, 1927.71, -710.843, 1084.34, 746.988, -1903.61, 746.988)
+
+[node name="Level" type="Node2D" parent="."]
+
+[node name="Floor" type="Sprite2D" parent="Level"]
+position = Vector2(160, 105)
+scale = Vector2(0.083, 0.083)
+texture = ExtResource("2_r2avm")
+
+[node name="Leftwall" type="Sprite2D" parent="Level/Floor"]
+position = Vector2(-1482.68, -237.45)
+texture = ExtResource("3_y6ffq")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Level/Floor/Leftwall"]
+position = Vector2(1915.68, -738.735)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor/Leftwall/StaticBody2D2"]
+position = Vector2(-1579.44, 414.87)
+rotation = -1.0472
+shape = SubResource("RectangleShape2D_8c41q")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level/Floor/Leftwall/StaticBody2D2"]
+position = Vector2(-2072.9, 1260.15)
+rotation = -1.0472
+scale = Vector2(1, 0.999999)
+shape = SubResource("RectangleShape2D_olg7q")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Level/Floor/Leftwall"]
+position = Vector2(4904.37, -738.735)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor/Leftwall/StaticBody2D3"]
+position = Vector2(-1644.56, 527.657)
+rotation = -1.0472
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_5kpae")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level/Floor/Leftwall/StaticBody2D3"]
+position = Vector2(-2156.7, 1388.33)
+rotation = -1.0472
+scale = Vector2(1, 0.999999)
+shape = SubResource("RectangleShape2D_qtjml")
+
+[node name="Topwall" type="Sprite2D" parent="Level/Floor"]
+position = Vector2(433, -976.185)
+texture = ExtResource("8_nhtlm")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Level/Floor/Topwall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor/Topwall/StaticBody2D"]
+position = Vector2(729.65, 258.146)
+scale = Vector2(1, 0.999999)
+shape = SubResource("RectangleShape2D_mx8sn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level/Floor/Topwall/StaticBody2D"]
+position = Vector2(-722.157, 253.294)
+shape = SubResource("RectangleShape2D_mx8sn")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Level/Floor/Topwall"]
+position = Vector2(-830.59, 1638.84)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor/Topwall/StaticBody2D2"]
+position = Vector2(981.927, 84.3374)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_8iemx")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level/Floor/Topwall/StaticBody2D2"]
+position = Vector2(-698.795, 86.8208)
+scale = Vector2(1, 0.999999)
+shape = SubResource("RectangleShape2D_64w2a")
+
+[node name="WallArt" type="Sprite2D" parent="Level/Floor/Topwall"]
+position = Vector2(844.108, 0.281555)
+texture = ExtResource("16_6280n")
+
+[node name="BottomDoor" type="Sprite2D" parent="Level/Floor"]
+position = Vector2(-96.3856, 722.892)
+texture = ExtResource("17_e1pub")
+
+[node name="RightDoor" type="Sprite2D" parent="Level/Floor"]
+position = Vector2(1530.12, -48.1927)
+texture = ExtResource("18_oy7y0")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStream_8gofh")
+
+[node name="Sparky" parent="." instance=ExtResource("19_ibohm")]
+position = Vector2(109, 71)
+
+[node name="Sparky2" parent="." instance=ExtResource("19_ibohm")]
+position = Vector2(177, 78)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

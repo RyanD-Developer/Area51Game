@@ -14,10 +14,6 @@ config/name="Area41Game"
 run/main_scene="uid://0cnig4ya4fkw"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 
-[autoload]
-
-Globals="*res://scripts/core/Globals.cs"
-
 [display]
 
 window/size/viewport_width=320
