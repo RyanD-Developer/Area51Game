@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ca7eajhhi3ag7" path="res://assets/Lives/IMG_1735.png" id="1_qmak7"]
 [ext_resource type="Texture2D" uid="uid://crmgmb7xposwd" path="res://assets/Lives/IMG_1736.png" id="2_8ra5a"]
 [ext_resource type="PackedScene" uid="uid://ddx7ir8oi0jq6" path="res://scenes/level.tscn" id="2_ufxs0"]
-[ext_resource type="PackedScene" uid="uid://cvqvbmfsrkfme" path="res://scenes/characters/player.tscn" id="3_8ra5a"]
+[ext_resource type="PackedScene" uid="uid://cvqvbmfsrkfme" path="res://scenes/player.tscn" id="3_8ra5a"]
 [ext_resource type="Texture2D" uid="uid://cwo563wvdguy7" path="res://icon.svg" id="5_8ra5a"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bq26l"]

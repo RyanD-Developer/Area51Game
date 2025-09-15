@@ -30,6 +30,7 @@ public partial class Player : CharacterBody2D
 	private Vector2 attackPos;
 	private Vector2 mousePos;
 
+
 	public override void _Ready()
 	{
 		base._Ready();
