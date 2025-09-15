@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class Player : CharacterBody2D
 {
@@ -10,9 +11,10 @@ public partial class Player : CharacterBody2D
 	private int speed = 50;
 
 	private Vector2 currentVelocity;
-	private bool isAttacking;
-	private bool mouseDown;
-	private bool isOverlapped = false;
+	private bool isAttacking = false;
+	private bool isInGround = false;
+	private bool didAttack = false;
+	private bool mouseDown = false;
 	[Export]
 	private AnimationPlayer animationPlayer;
 
@@ -22,11 +24,15 @@ public partial class Player : CharacterBody2D
 	private Node2D attackParent;
 	[Export]
 	private AnimationPlayer attackAnimator;
+	private Vector2 attackPos;
+	private Vector2 mousePos;
+
 
 	public override void _Ready()
 	{
 		base._Ready();
 		GetNode<Hp>("Sprite2D").Images = Images;
+		attackPos = attackParent.Position;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -47,7 +53,15 @@ public partial class Player : CharacterBody2D
 		}
 		else
 		{
-			handleAttacking();
+			updateAnimation();
+			if(isInGround)
+			{
+				handleAttacking();
+			}
+			else
+			{
+				AttackAnimation();
+			}
 		}
 	}
 
@@ -55,24 +69,57 @@ public partial class Player : CharacterBody2D
 	{
 		if (mouseDown)
 		{
-			if (!isOverlapped)
-			{
-				Tween tween;
-				tween.TweenProperty(attackParent, "position", GetViewport().GetMousePosition(), 0.75);
-			}
-			else
-			{
-				attackParent.Position = new Vector2(0f,0f);
-				//GetViewport().GetMousePosition();
-			}
-			if (attackParent.Position == GetViewport().GetMousePosition())
-			{
-				isOverlapped = false;
-			}
+			mousePos = ToGlobal(GetViewport().GetMousePosition()) - this.GlobalPosition;
+			attackAnimator.Play("InMoving");
+			Tween tween = GetTree().CreateTween();
+			tween.TweenProperty(attackParent, "global_position", mousePos, 0.5);
 		}
 		else
 		{
+			AttackDelay();
+		}
+	}
 
+	private async void AttackAnimation()
+	{
+		animationPlayer.Play("attack" + direction);
+		await Task.Delay(800);
+		//animationPlayer.PlaybackActive = false;
+		isInGround = true;
+	}
+
+	private async void AttackDelay()
+	{
+		if(!didAttack)
+		{
+			while(attackParent.GlobalPosition.X > mousePos.X + 1f && attackParent.GlobalPosition.X < mousePos.X- 1f && attackParent.GlobalPosition.Y > mousePos.Y + 1f && attackParent.GlobalPosition.Y < mousePos.Y - 1f)
+			{
+				attackAnimator.Play("InMoving");
+				Tween tween = GetTree().CreateTween();
+				tween.TweenProperty(attackParent, "global_position", mousePos, 0.5);
+				await Task.Delay(750);
+				if(attackParent.GlobalPosition.X < mousePos.X + 1f && attackParent.GlobalPosition.X > mousePos.X- 1f && attackParent.GlobalPosition.Y < mousePos.Y + 1f && attackParent.GlobalPosition.Y > mousePos.Y - 1f)
+				{
+					tween.Kill();
+				}
+			}
+			if(attackParent.GlobalPosition.X < mousePos.X + 1f && attackParent.GlobalPosition.X > mousePos.X- 1f && attackParent.GlobalPosition.Y < mousePos.Y + 1f && attackParent.GlobalPosition.Y > mousePos.Y - 1f)
+			{
+				attackAnimator.Play("Attacking");
+				attackParent.GlobalPosition = mousePos;
+				await Task.Delay(800);
+				didAttack = true;
+			}
+		}
+		if(didAttack)
+		{
+			attackParent.Position = attackPos;
+			attackAnimator.Play("Gone");
+			animationPlayer.PlaybackActive = true;
+			await Task.Delay(600);
+			isInGround = false;
+			isAttacking = false;
+			didAttack = false;
 		}
 	}
 
@@ -81,9 +128,12 @@ public partial class Player : CharacterBody2D
 		currentVelocity = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 		currentVelocity *= speed;
 		mouseDown = Input.IsActionPressed("ui_accept");
-		if (mouseDown)
+		if (!isAttacking)
 		{
-			isAttacking = true;
+			if (mouseDown)
+			{
+				isAttacking = true;
+			}
 		}
 	}
 
@@ -137,7 +187,6 @@ public partial class Player : CharacterBody2D
 				direction = "Up";
 			}
 		}
-
 		animationPlayer.Play("walk" + direction);
 	}
 }
