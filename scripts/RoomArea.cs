@@ -8,10 +8,15 @@ public partial class RoomArea : Area2D
 	private Vector2 cameraTargetPosition;
 	[Export]
 	private float transitionSpeed = 2.0f;
+	[Export]
+	private CollisionPolygon2D areaShape;
+	[Export]
+	private Player playerNode;
 
 	private static RoomArea current_collision;
 	private RoomArea previous_collision;
 	private Camera2D camera;
+	private List<Sparky> sparkies = new List<Sparky>();
 
 	public override void _Ready()
 	{
@@ -26,6 +31,18 @@ public partial class RoomArea : Area2D
 				current_collision = this;
 				current_collision.GetParent<Sprite2D>().Modulate = Color.Color8(255, 255, 255, 255);
 			}
+		}
+		foreach (Node child in GetParent().GetChildren())
+		{
+			if (child is Sparky sparkyNode)
+			{
+				sparkies.Add(sparkyNode);
+			}
+		}
+		foreach (Sparky sparky in sparkies)
+		{
+			sparky.boundaries = areaShape.GetPolygon();
+			sparky.player = playerNode;
 		}
 		cameraTargetPosition = new Vector2(this.GlobalPosition.X, this.GlobalPosition.Y - 20f);
 		camera = GetViewport().GetCamera2D();
@@ -50,11 +67,15 @@ public partial class RoomArea : Area2D
 			//camera.Position = new Vector2(current_collision.GlobalPosition.X, current_collision.GlobalPosition.Y - 20f);
 			Tween tween = GetTree().CreateTween();
 			tween.TweenProperty(camera, "position", cameraTargetPosition, transitionSpeed);
+			foreach(Sparky sparky in sparkies)
+			{
+				sparky.isOn = true;
+			}
 		}
 	}
 	public void _on_body_exited(Node body)
 	{
-		if (current_collision == this)
+		if (current_collision == this && body.Name == "Player")
 		{
 			if (previous_collision != null)
 			{
@@ -70,6 +91,12 @@ public partial class RoomArea : Area2D
 			tweenColor.TweenProperty(current_collision.GetParent<Sprite2D>(), "modulate", Color.Color8(255, 255, 255, 255), transitionSpeed);
 			Tween tween = GetTree().CreateTween();
 			tween.TweenProperty(camera, "position", cameraTargetPosition, transitionSpeed);
+		}
+		if(body.Name == "Player"){
+		foreach(Sparky sparky in sparkies)
+		{
+			sparky.isOn = false;
+		}
 		}
 	}
 
