@@ -13,6 +13,7 @@ public partial class Player : CharacterBody2D
 	private Vector2 currentVelocity;
 	private bool isAttacking = false;
 	private bool isInGround = false;
+	private bool attackAnim = false;
 	private bool didAttack = false;
 	private bool mouseDown = false;
 	[Export]
@@ -24,6 +25,8 @@ public partial class Player : CharacterBody2D
 	private Node2D attackParent;
 	[Export]
 	private AnimationPlayer attackAnimator;
+	[Export]
+	public RoomArea currentRoom;
 	private Vector2 attackPos;
 	private Vector2 mousePos;
 
@@ -37,13 +40,9 @@ public partial class Player : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		base._PhysicsProcess(delta);
-		if (currentVelocity.X == 0 && currentVelocity.Y == 0)
-		{
-			animationPlayer.Stop(true);
-		}
 
 		handleInput();
-
+		
 		if (!isAttacking)
 		{
 			Velocity = currentVelocity;
@@ -52,14 +51,16 @@ public partial class Player : CharacterBody2D
 		}
 		else
 		{
-			updateAnimation();
 			if(isInGround)
 			{
 				handleAttacking();
 			}
 			else
 			{
-				AttackAnimation();
+				if(!attackAnim)
+				{
+					AttackAnimation();
+				}
 			}
 		}
 	}
@@ -81,9 +82,14 @@ public partial class Player : CharacterBody2D
 
 	private async void AttackAnimation()
 	{
+		attackAnim = true;
 		animationPlayer.Play("attack" + direction);
 		await Task.Delay(800);
-		//animationPlayer.PlaybackActive = false;
+		mousePos = ToGlobal(GetViewport().GetMousePosition()) - this.GlobalPosition;
+			attackAnimator.Play("InMoving");
+			Tween tween = GetTree().CreateTween();
+			tween.TweenProperty(attackParent, "global_position", mousePos, 0.5);
+		animationPlayer.PlaybackActive = false;
 		isInGround = true;
 	}
 
@@ -119,6 +125,7 @@ public partial class Player : CharacterBody2D
 			isInGround = false;
 			isAttacking = false;
 			didAttack = false;
+			attackAnim = false;
 		}
 	}
 
@@ -138,6 +145,10 @@ public partial class Player : CharacterBody2D
 
 	private void updateAnimation()
 	{
+		if (currentVelocity.X == 0 && currentVelocity.Y == 0)
+		{
+			animationPlayer.Stop(true);
+		}
 		if (Velocity.X != 0 || Velocity.Y != 0)
 		{
 			if (Velocity.X < 0)

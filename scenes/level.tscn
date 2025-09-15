@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://ddx7ir8oi0jq6"]
+[gd_scene load_steps=33 format=3 uid="uid://ddx7ir8oi0jq6"]
 
 [ext_resource type="Texture2D" uid="uid://c8qokarewj1v8" path="res://assets/Environment/Floor/IMG_1693.png" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://3a7uovlsrldf" path="res://scripts/RoomArea.cs" id="2_w7c3h"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cryn2b1t45w07" path="res://assets/Environment/Doors/IMG_1687.png" id="8_82cfe"]
 [ext_resource type="Texture2D" uid="uid://clns5kvk7w08c" path="res://assets/Environment/Doors/IMG_1688.png" id="8_b121j"]
 [ext_resource type="Texture2D" uid="uid://def1gewidqxpj" path="res://assets/Environment/Doors/IMG_1691.png" id="9_fpun6"]
+[ext_resource type="PackedScene" uid="uid://ccsqp1j1yi2a4" path="res://scenes/characters/sparky.tscn" id="17_ux5qa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8c41q"]
 radius = 240.955
@@ -152,70 +153,86 @@ size = Vector2(1012.78, 4.40404)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_64w2a"]
 size = Vector2(1601.67, 4.68552)
 
-[node name="Level" type="Node2D"]
-
-[node name="Floor" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(160, 105)
-scale = Vector2(0.083, 0.083)
-texture = ExtResource("1_2q6dc")
-
-[node name="Area2D" type="Area2D" parent="Floor"]
+[node name="Area2D" type="Area2D" node_paths=PackedStringArray("areaShape")]
 position = Vector2(0, -7.14936e-06)
 disable_mode = 1
 script = ExtResource("2_w7c3h")
 cameraTargetPosition = Vector2(160, 85)
+areaShape = NodePath("CollisionPolygon2D")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(160, 105)
+scale = Vector2(0.083, 0.083)
 polygon = PackedVector2Array(-1048.19, -722.891, 1927.71, -710.843, 1084.34, 746.988, -1903.61, 746.988)
 
-[node name="Leftwall" type="Sprite2D" parent="Floor"]
+[node name="Level" type="Node2D" parent="."]
+
+[node name="Floor" type="Sprite2D" parent="Level"]
+position = Vector2(160, 105)
+scale = Vector2(0.083, 0.083)
+texture = ExtResource("1_2q6dc")
+
+[node name="Leftwall" type="Sprite2D" parent="Level/Floor"]
 position = Vector2(-1482.68, -237.45)
 texture = ExtResource("3_mx8sn")
 
-[node name="LeftDoor" type="Sprite2D" parent="Floor/Leftwall"]
+[node name="LeftDoor" type="Sprite2D" parent="Level/Floor/Leftwall"]
 position = Vector2(48.9456, 68.7755)
 texture = ExtResource("6_arp2o")
 
-[node name="Area2D" type="Area2D" parent="Floor/Leftwall/LeftDoor"]
+[node name="Area2D" type="Area2D" parent="Level/Floor/Leftwall/LeftDoor"]
 position = Vector2(-36.1451, -12.0484)
 disable_mode = 1
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/Leftwall/LeftDoor/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor/Leftwall/LeftDoor/Area2D"]
 position = Vector2(36.144, 132.53)
 rotation = -1.57952
 shape = SubResource("CapsuleShape2D_8c41q")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Floor/Leftwall/LeftDoor"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Floor/Leftwall/LeftDoor"]
 libraries = {
 &"": SubResource("AnimationLibrary_fpun6")
 }
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="Floor/Leftwall"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="Level/Floor/Leftwall"]
 position = Vector2(1915.68, -738.735)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/Leftwall/StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor/Leftwall/StaticBody2D2"]
 position = Vector2(-1579.44, 414.87)
 rotation = -1.0472
 shape = SubResource("RectangleShape2D_8c41q")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Floor/Leftwall/StaticBody2D2"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level/Floor/Leftwall/StaticBody2D2"]
 position = Vector2(-2152.18, 1397.47)
 rotation = -1.0472
 scale = Vector2(1, 0.999999)
 shape = SubResource("RectangleShape2D_olg7q")
 
-[node name="Topwall" type="Sprite2D" parent="Floor"]
+[node name="StaticBody2D3" type="StaticBody2D" parent="Level/Floor/Leftwall"]
+position = Vector2(4904.37, -738.735)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor/Leftwall/StaticBody2D3"]
+position = Vector2(-1579.44, 414.87)
+rotation = -1.0472
+shape = SubResource("RectangleShape2D_8c41q")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level/Floor/Leftwall/StaticBody2D3"]
+position = Vector2(-2152.18, 1397.47)
+rotation = -1.0472
+scale = Vector2(1, 0.999999)
+shape = SubResource("RectangleShape2D_olg7q")
+
+[node name="Topwall" type="Sprite2D" parent="Level/Floor"]
 position = Vector2(433, -976.185)
 texture = ExtResource("4_ppgk2")
 
-[node name="Door" type="Sprite2D" parent="Floor/Topwall"]
+[node name="Door" type="Sprite2D" parent="Level/Floor/Topwall"]
 position = Vector2(28.5385, 53.9628)
 texture = ExtResource("7_8iemx")
 
-[node name="Area2D2" type="Area2D" parent="Floor/Topwall/Door" node_paths=PackedStringArray("animationPlayerTop", "animationPlayerLeft")]
+[node name="Area2D2" type="Area2D" parent="Level/Floor/Topwall/Door" node_paths=PackedStringArray("animationPlayerTop", "animationPlayerLeft")]
 position = Vector2(-51.9004, -89.8259)
 disable_mode = 1
 collision_layer = 2
@@ -224,54 +241,59 @@ script = ExtResource("7_64w2a")
 animationPlayerTop = NodePath("../AnimationPlayer")
 animationPlayerLeft = NodePath("../../../Leftwall/LeftDoor/AnimationPlayer")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/Topwall/Door/Area2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor/Topwall/Door/Area2D2"]
 position = Vector2(36.1451, 301.205)
 shape = SubResource("CapsuleShape2D_olg7q")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Floor/Topwall/Door"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Floor/Topwall/Door"]
 libraries = {
 &"": SubResource("AnimationLibrary_82cfe")
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Floor/Topwall"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Level/Floor/Topwall"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/Topwall/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor/Topwall/StaticBody2D"]
 position = Vector2(880.253, 253.293)
 scale = Vector2(1, 0.999999)
 shape = SubResource("RectangleShape2D_mx8sn")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Floor/Topwall/StaticBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level/Floor/Topwall/StaticBody2D"]
 position = Vector2(-854.687, 255.636)
 shape = SubResource("RectangleShape2D_mx8sn")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="Floor/Topwall"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="Level/Floor/Topwall"]
 position = Vector2(-830.59, 1638.84)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/Topwall/StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor/Topwall/StaticBody2D2"]
 position = Vector2(981.927, 84.3374)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_8iemx")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Floor/Topwall/StaticBody2D2"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level/Floor/Topwall/StaticBody2D2"]
 position = Vector2(-698.795, 86.8208)
 scale = Vector2(1, 0.999999)
 shape = SubResource("RectangleShape2D_64w2a")
 
-[node name="WallArt" type="Sprite2D" parent="Floor/Topwall"]
+[node name="WallArt" type="Sprite2D" parent="Level/Floor/Topwall"]
 position = Vector2(844.108, 0.281555)
 texture = ExtResource("7_8c41q")
 
-[node name="BottomDoor" type="Sprite2D" parent="Floor"]
+[node name="BottomDoor" type="Sprite2D" parent="Level/Floor"]
 position = Vector2(-96.3856, 722.892)
 texture = ExtResource("6_2r41h")
 
-[node name="RightDoor" type="Sprite2D" parent="Floor"]
+[node name="RightDoor" type="Sprite2D" parent="Level/Floor"]
 position = Vector2(1530.12, -48.1927)
 texture = ExtResource("7_klq6b")
 
-[connection signal="body_entered" from="Floor/Area2D" to="Floor/Area2D" method="_on_body_entered"]
-[connection signal="body_exited" from="Floor/Area2D" to="Floor/Area2D" method="_on_body_exited"]
-[connection signal="body_entered" from="Floor/Leftwall/LeftDoor/Area2D" to="Floor/Topwall/Door/Area2D2" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Floor/Leftwall/LeftDoor/Area2D" to="Floor/Topwall/Door/Area2D2" method="_on_area_2d_body_exited"]
-[connection signal="body_entered" from="Floor/Topwall/Door/Area2D2" to="Floor/Topwall/Door/Area2D2" method="_on_area_2d_2_body_entered"]
-[connection signal="body_exited" from="Floor/Topwall/Door/Area2D2" to="Floor/Topwall/Door/Area2D2" method="_on_area_2d_2_body_exited"]
+[node name="Sparky" parent="Level/Floor" instance=ExtResource("17_ux5qa")]
+position = Vector2(156.627, 180.723)
+scale = Vector2(12.0482, 12.0482)
+speed = 12.5
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_entered" from="Level/Floor/Leftwall/LeftDoor/Area2D" to="Level/Floor/Topwall/Door/Area2D2" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Level/Floor/Leftwall/LeftDoor/Area2D" to="Level/Floor/Topwall/Door/Area2D2" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Level/Floor/Topwall/Door/Area2D2" to="Level/Floor/Topwall/Door/Area2D2" method="_on_area_2d_2_body_entered"]
+[connection signal="body_exited" from="Level/Floor/Topwall/Door/Area2D2" to="Level/Floor/Topwall/Door/Area2D2" method="_on_area_2d_2_body_exited"]

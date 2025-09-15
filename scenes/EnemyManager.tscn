@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://r4k3h7j1uvr7"]
+
+[node name="EnemyManager" type="Node2D"]
+
+[node name="FloorParent" type="Node2D" parent="."]
+position = Vector2(160, 105)
+scale = Vector2(0.083, 0.083)
+
+[node name="Area2D" type="Area2D" parent="FloorParent"]
+scale = Vector2(1, 1)
+disable_mode = 1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FloorParent/Area2D"]
+polygon = PackedVector2Array(-1048.19, -722.891, 1927.71, -710.843, 1084.34, 746.988, -1903.61, 746.988)
+
+[node name="sparkyManager" type="Node2D" parent="."]

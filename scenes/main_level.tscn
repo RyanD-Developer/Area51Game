@@ -84,16 +84,20 @@ offset_right = 103.0
 offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_u2c82")
 
-[node name="Level" parent="." instance=ExtResource("2_ufxs0")]
+[node name="Level" parent="." node_paths=PackedStringArray("playerNode") instance=ExtResource("2_ufxs0")]
+playerNode = NodePath("../Player")
 
-[node name="Level3" parent="." instance=ExtResource("2_ufxs0")]
+[node name="Level3" parent="." node_paths=PackedStringArray("playerNode") instance=ExtResource("2_ufxs0")]
 position = Vector2(43, -124)
+playerNode = NodePath("../Player")
 
-[node name="Level2" parent="." instance=ExtResource("2_ufxs0")]
+[node name="Level2" parent="." node_paths=PackedStringArray("playerNode") instance=ExtResource("2_ufxs0")]
 position = Vector2(250, 0)
+playerNode = NodePath("../Player")
 
-[node name="Level4" parent="." instance=ExtResource("2_ufxs0")]
+[node name="Level4" parent="." node_paths=PackedStringArray("playerNode") instance=ExtResource("2_ufxs0")]
 position = Vector2(293, -124)
+playerNode = NodePath("../Player")
 
 [node name="Flame" type="Area2D" parent="."]
 
