@@ -1668,4 +1668,6 @@ libraries = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
+[node name="Node" type="Node" parent="."]
+
 [connection signal="area_entered" from="Player" to="Sprite2D" method="_on_player_area_entered"]

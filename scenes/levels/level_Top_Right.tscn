@@ -209,7 +209,6 @@ position = Vector2(1915.68, -738.735)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor/Leftwall/StaticBody2D2"]
 position = Vector2(-1722.16, 662.932)
 rotation = -1.0472
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_8c41q")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Level/Floor/Leftwall/StaticBody2D2"]
@@ -224,7 +223,6 @@ position = Vector2(4904.37, -738.735)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor/Leftwall/StaticBody2D3"]
 position = Vector2(-1645.75, 529.727)
 rotation = -1.0472
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_6q2wk")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Level/Floor/Leftwall/StaticBody2D3"]
