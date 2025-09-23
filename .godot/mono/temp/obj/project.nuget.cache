@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "lCsHnXuOieE=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ryand\\Documents\\game-testing\\Area41Game.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ryand\\.nuget\\packages\\godot.sourcegenerators\\4.5.0\\godot.sourcegenerators.4.5.0.nupkg.sha512",
+    "C:\\Users\\ryand\\.nuget\\packages\\godotsharp\\4.5.0\\godotsharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\ryand\\.nuget\\packages\\godotsharpeditor\\4.5.0\\godotsharpeditor.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

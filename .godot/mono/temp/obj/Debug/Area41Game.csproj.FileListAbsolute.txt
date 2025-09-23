@@ -1,0 +1,17 @@
+C:\Users\ryand\Documents\game-testing\.godot\mono\temp\bin\Debug\Area41Game.deps.json
+C:\Users\ryand\Documents\game-testing\.godot\mono\temp\bin\Debug\Area41Game.runtimeconfig.json
+C:\Users\ryand\Documents\game-testing\.godot\mono\temp\bin\Debug\Area41Game.dll
+C:\Users\ryand\Documents\game-testing\.godot\mono\temp\bin\Debug\Area41Game.pdb
+C:\Users\ryand\Documents\game-testing\.godot\mono\temp\bin\Debug\GodotSharp.dll
+C:\Users\ryand\Documents\game-testing\.godot\mono\temp\bin\Debug\GodotSharpEditor.dll
+C:\Users\ryand\Documents\game-testing\.godot\mono\temp\obj\Debug\Area41Game.csproj.AssemblyReference.cache
+C:\Users\ryand\Documents\game-testing\.godot\mono\temp\obj\Debug\Area41Game.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ryand\Documents\game-testing\.godot\mono\temp\obj\Debug\Area41Game.AssemblyInfoInputs.cache
+C:\Users\ryand\Documents\game-testing\.godot\mono\temp\obj\Debug\Area41Game.AssemblyInfo.cs
+C:\Users\ryand\Documents\game-testing\.godot\mono\temp\obj\Debug\Area41Game.csproj.CoreCompileInputs.cache
+C:\Users\ryand\Documents\game-testing\.godot\mono\temp\obj\Debug\Area41Game.csproj.Up2Date
+C:\Users\ryand\Documents\game-testing\.godot\mono\temp\obj\Debug\Area41Game.dll
+C:\Users\ryand\Documents\game-testing\.godot\mono\temp\obj\Debug\refint\Area41Game.dll
+C:\Users\ryand\Documents\game-testing\.godot\mono\temp\obj\Debug\Area41Game.pdb
+C:\Users\ryand\Documents\game-testing\.godot\mono\temp\obj\Debug\Area41Game.genruntimeconfig.cache
+C:\Users\ryand\Documents\game-testing\.godot\mono\temp\obj\Debug\ref\Area41Game.dll

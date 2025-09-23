@@ -1,0 +1,15 @@
+res://scenes/characters/bulletin.tscn::7357986e13fdc39e9f0a310b7ee84e40::1757947430::res://.godot/exported/133200997/export-0aaf6f848b7ed645a48dcc2ffb40a238-bulletin.scn
+res://scenes/characters/player.tscn::8e3d3af3b3fca75ac942eb94fef46ada::1757947430::res://.godot/exported/133200997/export-c8ae144dc4ea98eb64848d3bf0e2a75e-player.scn
+res://scenes/characters/sparky.tscn::2e992307ca954940aec98bb47b2ca47b::1757947430::res://.godot/exported/133200997/export-612be76f68fc75cfa0184440d1df9a82-sparky.scn
+res://scenes/core/game_manager.tscn::5d0b671f5747c69a0f0aaf33dbb6766c::1757947430::res://.godot/exported/133200997/export-3198f49981167be3867bd1acc6a50cc4-game_manager.scn
+res://scenes/levels/level.tscn::947444b94de645afe4a130a488b2a1b5::1757947430::res://.godot/exported/133200997/export-d2f84246acaf0198009608664807e4e4-level.scn
+res://scenes/levels/level_Right_bottom.tscn::7e8ebd1058bcebbc7ff12066774bd3c3::1757947466::res://.godot/exported/133200997/export-a18b2ee39b711f949d1454f13ac148bc-level_Right_bottom.scn
+res://scenes/levels/level_Top_Right.tscn::d52bc6b31d4975fdcd9abe6436f0725e::1757947431::res://.godot/exported/133200997/export-a49f87a9034846d793666c175ae5df4e-level_Top_Right.scn
+res://scenes/levels/level_Left.tscn::fef4d6333f3485cbf9c0e870a5d8edaa::1757947431::res://.godot/exported/133200997/export-4f8a44406128d7339e00f06b5981834d-level_Left.scn
+res://scenes/EnemyManager.tscn::3be4cce3d16f74ba475348c0098617aa::1757947430::res://.godot/exported/133200997/export-a40c9555f0f26d51b03b86ddf9953e0b-EnemyManager.scn
+res://scenes/level_win.tscn::bb0314d7c0763e192671554eeeb16dfb::1757947430::res://.godot/exported/133200997/export-f75f081bbebc73503011a419df25e709-level_win.scn
+res://scenes/MainMenu.tscn::08ce8b667032b372d1c5aa3182a87473::1757947430::res://.godot/exported/133200997/export-23c8b2a48d59a0cd018bd8ad5ce7794c-MainMenu.scn
+res://scenes/main_level.tscn::28bf8cc32d4973b1b04f7cea13e5ab3b::1757947430::res://.godot/exported/133200997/export-7225f36b1ef362236cf416fc83f2a2b1-main_level.scn
+res://scenes/PauseMenu.tscn::d39c814e803e1c392792353f79395203::1757947431::res://.godot/exported/133200997/export-322493d365676aa8c0336579f6935b26-PauseMenu.scn
+res://scenes/win_screen.tscn::e13c8716b93e658a622fd03229f11569::1757947430::res://.godot/exported/133200997/export-4446fc4d426ca974deeefccb08735c1c-win_screen.scn
+res://MainLevel.tscn::0f6507009fcbb8712ce0a091dfdd899e::1757315393::res://.godot/exported/133200997/export-e1738d6b5c9143ddcaf2ab2178e0befd-MainLevel.scn

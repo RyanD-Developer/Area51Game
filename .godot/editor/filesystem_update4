@@ -1,0 +1,11 @@
+res://scenes/characters/sparky.tscn
+res://scripts/Enemies/Sparky.cs
+res://scripts/Enemies/Bulletin.cs
+res://scripts/Door.cs
+res://scripts/RoomArea.cs
+res://scripts/MainLevel.cs
+res://scripts/PauseMenu.cs
+res://scripts/Player.cs
+res://scripts/core/Globals.cs
+res://scripts/Hp.cs
+res://scripts/MainMenu.cs
