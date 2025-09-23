@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1758599248
+::res://::1758603626
 abstract-black-and-white-grid-pattern-free-vector.jpg::CompressedTexture2D::4420349457169303536::1757363899::1758169951::1::::<><><>0<>0<>868dd76665c1593881243b2b0416f748<>res://.godot/imported/abstract-black-and-white-grid-pattern-free-vector.jpg-87905b80a07c3b47ec0950171852348b.ctex::
 export_presets.cfg::TextFile::-1::1757947793::0::1::::<><><>0<>0<><>::
 Icon.png::CompressedTexture2D::4360905600930252592::1757799981::1758169950::1::::<><><>0<>0<>5f4155800e7cd13be25188b548f7f914<>res://.godot/imported/Icon.png-33e63688031d53466d4d656c73cf10ca.ctex::
@@ -149,10 +149,10 @@ MainMenu.tscn::PackedScene::1759653814747157414::1758172666::0::1::::<><><>0<>0<
 main_level.tscn::PackedScene::3199500512725046040::1758172666::0::1::::<><><>0<>0<><>::uid://dfav1tscpmjqe::::res://scripts/MainLevel.cs<>uid://ca7eajhhi3ag7::::res://assets/Lives/IMG_1735.png<>uid://crmgmb7xposwd::::res://assets/Lives/IMG_1736.png<>uid://cvqvbmfsrkfme::::res://scenes/characters/player.tscn<>uid://bchsu1x14p8ue::::res://scenes/PauseMenu.tscn<>uid://bbobamt8xkd8j::::res://resources/the lab.wav<>uid://dxdgqbuia83rn::::res://scenes/levels/level_Top_Right.tscn<>uid://bhyee13u00xtf::::res://scenes/levels/level_Left.tscn<>uid://hf3v7wkpoivm::::res://scenes/levels/level_Right_bottom.tscn<>uid://d6f048x4utxe::::res://scenes/level_win.tscn
 PauseMenu.tscn::PackedScene::2542379039353787000::1758172666::0::1::::<><><>0<>0<><>::uid://b44pa8tcdcssd::::res://Super Trend.ttf<>uid://dqatxrdon71n3::::res://scripts/PauseMenu.cs
 win_screen.tscn::PackedScene::1155920790853880149::1758172666::0::1::::<><><>0<>0<><>::uid://b44pa8tcdcssd::::res://Super Trend.ttf<>uid://ciyyigjihf5mu::::res://scripts/MainMenu.cs<>uid://bjrmqhkj6pcdd::::res://assets/Environment/ScreenshotGame.png<>uid://fhk7ndj8qrls::::res://assets/Alien_Anims/spritesheet_walking.png<>uid://de8nswvwvdm5p::::res://assets/Enemies/Sparky/spritesheet_sparky_walking.png<>uid://o2xsrm4gr0vp::::res://assets/Enemies/Bulletin/spritesheet_bulletin.png
-::res://scenes/characters/::1758172991
+::res://scenes/characters/::1758603553
 bulletin.tscn::PackedScene::9090508597908770662::1758172666::0::1::::<><><>0<>0<><>::uid://vs14lqjw06rc::::res://scripts/Enemies/Bulletin.cs<>uid://cxadm26oalp0o::::res://resources/SPIN GUY.wav<>uid://o2xsrm4gr0vp::::res://assets/Enemies/Bulletin/spritesheet_bulletin.png<>uid://b5446bhtt0o7o::::res://resources/CHEEKS_ATTACK ANIMATION.wav
 player.tscn::PackedScene::6281114609337017616::1758172991::0::1::::<><><>0<>0<><>::uid://byc25uxfxidxx::::res://scripts/Player.cs<>uid://b5446bhtt0o7o::::res://resources/CHEEKS_ATTACK ANIMATION.wav<>uid://fhk7ndj8qrls::::res://assets/Alien_Anims/spritesheet_walking.png<>uid://covq625ch7bo4::::res://scripts/Hp.cs<>uid://ccntr6vgml3ec::::res://assets/Alien_Anims/spritesheet_attacking.png<>uid://c60lpe71isu2o::::res://assets/RubbleInMoving.png<>uid://d0cke77yttvjy::::res://assets/Rubble.png<>uid://cafphwa3kqm0d::::res://assets/Alien_Anims/Tentacle.png
-sparky.tscn::PackedScene::4951377493752261961::1758172666::0::1::::<><><>0<>0<><>::uid://de8nswvwvdm5p::::res://assets/Enemies/Sparky/spritesheet_sparky_walking.png<>uid://jxnhavl6eajo::::res://scripts/Enemies/Sparky.cs<>uid://cs5epatny8mb8::::res://resources/FLAMETRHOWER.wav<>uid://b5446bhtt0o7o::::res://resources/CHEEKS_ATTACK ANIMATION.wav
+sparky.tscn::PackedScene::4951377493752261961::1758603553::0::1::::<><><>0<>0<><>::uid://de8nswvwvdm5p::::res://assets/Enemies/Sparky/spritesheet_sparky_walking.png<>uid://jxnhavl6eajo::::res://scripts/Enemies/Sparky.cs<>uid://cs5epatny8mb8::::res://resources/FLAMETRHOWER.wav<>uid://b5446bhtt0o7o::::res://resources/CHEEKS_ATTACK ANIMATION.wav
 ::res://scenes/core/::1758172666
 game_manager.tscn::PackedScene::4199984165027864854::1758172666::0::1::::<><><>0<>0<><>::
 ::res://scenes/levels/::1758172667
@@ -172,6 +172,6 @@ RoomArea.cs::CSharpScript::1967267049803850975::1757940297::0::1::::<>Area2D<><>
 Enums.cs::CSharpScript::6737662827691054438::1757805984::0::1::::<><><>0<>0<><>::
 Globals.cs::CSharpScript::5449747426861592594::1757360298::0::1::::<>Node<><>0<>0<><>::
 Logger.cs::CSharpScript::4164409825284880409::1757360261::0::1::::<><><>0<>0<><>::
-::res://scripts/Enemies/::1758169967
-Bulletin.cs::CSharpScript::1512755548719985544::1757944851::0::1::::<>CharacterBody2D<><>0<>0<><>::
-Sparky.cs::CSharpScript::679982135531230960::1758169967::0::1::::<>CharacterBody2D<><>0<>0<><>::
+::res://scripts/Enemies/::1758603479
+Bulletin.cs::CSharpScript::1512755548719985544::1758600076::0::1::::<>CharacterBody2D<><>0<>0<><>::
+Sparky.cs::CSharpScript::679982135531230960::1758603479::0::1::::<>CharacterBody2D<><>0<>0<><>::

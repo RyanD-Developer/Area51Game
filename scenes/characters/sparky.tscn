@@ -1392,13 +1392,10 @@ _data = {
 &"attackUpLoop": SubResource("Animation_r00de")
 }
 
-[node name="Sparky" type="CharacterBody2D" node_paths=PackedStringArray("animationPlayer", "flameAnimator", "flamePos", "audioPlayer")]
+[node name="Sparky" type="CharacterBody2D" node_paths=PackedStringArray("flamePos")]
 script = ExtResource("1_qnowu")
 speed = 12.5
-animationPlayer = NodePath("AnimationPlayer")
-flameAnimator = NodePath("FireAnimator")
 flamePos = NodePath("Node2D")
-audioPlayer = NodePath("AudioStreamPlayer")
 flamethrower = ExtResource("3_nw4rs")
 hurt = ExtResource("3_wkkck")
 

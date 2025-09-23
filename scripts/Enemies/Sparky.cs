@@ -17,6 +17,7 @@ public partial class Sparky : CharacterBody2D
 	private AudioStream hurt;
 
 
+	private string direction;
 	public Player player;
 	public RoomArea roomArea;
 	private Vector2 playerPos;
@@ -103,13 +104,15 @@ public partial class Sparky : CharacterBody2D
 				{
 					if (playerPos.Y > GlobalPosition.Y)
 					{
-						animationPlayer.Play("attackDown");
+						CallDeferred("PlayAttackAnimation", "Down");
+						direction = "Down";
 						Attack();
 						didAttack = true;
 					}
 					else
 					{
-						animationPlayer.Play("attackUp");
+						CallDeferred("PlayAttackAnimation", "Up");
+						direction = "Up";
 						Attack();
 						didAttack = true;
 					}
@@ -120,13 +123,15 @@ public partial class Sparky : CharacterBody2D
 				{
 					if (playerPos.Y > GlobalPosition.Y)
 					{
-						animationPlayer.Play("attackDown");
+						CallDeferred("PlayAttackAnimation", "Down");
+						direction = "Down";
 						Attack();
 						didAttack = true;
 					}
 					else
 					{
-						animationPlayer.Play("attackUp");
+						CallDeferred("PlayAttackAnimation", "Up");
+						direction = "Up";
 						Attack();
 						didAttack = true;
 					}
@@ -155,13 +160,15 @@ public partial class Sparky : CharacterBody2D
 			{
 				if (playerPos.X > GlobalPosition.X)
 				{
-					animationPlayer.Play("attackRight");
+					CallDeferred("PlayAttackAnimation", "Right");
+					direction = "Right";
 					Attack();
 					didAttack = true;
 				}
 				else
 				{
-					animationPlayer.Play("attackLeft");
+					CallDeferred("PlayAttackAnimation", "Left");
+					direction = "Left";
 					Attack();
 					didAttack = true;
 				}
@@ -172,13 +179,15 @@ public partial class Sparky : CharacterBody2D
 			{
 				if (playerPos.Y > GlobalPosition.Y)
 				{
-					animationPlayer.Play("attackDown");
+					CallDeferred("PlayAttackAnimation", "Down");
+					direction = "Down";
 					Attack();
 					didAttack = true;
 				}
 				else
 				{
-					animationPlayer.Play("attackUp");
+					CallDeferred("PlayAttackAnimation", "Up");
+					direction = "Up";
 					Attack();
 					didAttack = true;
 				}
@@ -212,14 +221,15 @@ public partial class Sparky : CharacterBody2D
 		await Task.Delay(200);
 		audioPlayer.Stream = flamethrower;
 		audioPlayer.Play();
+		CallDeferred("PlayFlameAttackAnimation", direction);
 		flameAnimator.Play(animationPlayer.CurrentAnimation);
 		await Task.Delay(600);
 		if (flameAnimator.CurrentAnimation.Length > 10)
 		{
-			flameAnimator.Play(flameAnimator.CurrentAnimation + "Loop");
+			CallDeferred("PlayFlameLoopAnimation", direction);
 		}
 		await Task.Delay(1400);
-		flameAnimator.Play("RESET");
+		CallDeferred("PlayFlameResetAnimation");
 		attacking = false;
 		await Task.Delay(2500);
 		didAttack = false;
@@ -269,12 +279,13 @@ public partial class Sparky : CharacterBody2D
 			{
 				if (playerPos.X > GlobalPosition.X)
 				{
-					animationPlayer.Play("stuckRight");
+					CallDeferred(nameof(PlayStuckAnimation), "Right");
+
 					AttackStuck("Right");
 				}
 				else
 				{
-					animationPlayer.Play("stuckLeft");
+					CallDeferred(nameof(PlayStuckAnimation), "Left");
 					AttackStuck("Left");
 				}
 				Velocity = Vector2.Zero;
@@ -286,12 +297,12 @@ public partial class Sparky : CharacterBody2D
 				stuck = true;
 				if (playerPos.Y > GlobalPosition.Y)
 				{
-					animationPlayer.Play("stuckDown");
+					CallDeferred(nameof(PlayStuckAnimation), "Down");
 					AttackStuck("Down");
 				}
 				else
 				{
-					animationPlayer.Play("stuckUp");
+					CallDeferred(nameof(PlayStuckAnimation), "Up");
 					AttackStuck("Up");
 				}
 				Velocity = Vector2.Zero;
@@ -306,13 +317,52 @@ public partial class Sparky : CharacterBody2D
 			{
 				audioPlayer.Stream = flamethrower;
 				audioPlayer.Play();
-				flameAnimator.Play("attack" + direction);
+				if (!IsInsideTree()) break;
+				CallDeferred(nameof(PlayFlameAttackAnimation), direction);
 				await Task.Delay(600);
-				flameAnimator.Play("attack" + direction + "Loop");
+				if (!IsInsideTree()) break;
+				CallDeferred(nameof(PlayFlameLoopAnimation), direction);
+
 				await Task.Delay(2500);
-				flameAnimator.Play("RESET");
+				if (!IsInsideTree()) break;
+				CallDeferred(nameof(PlayFlameResetAnimation));
 				await Task.Delay(2500);
 			}
 		}
+	}
+
+	private void PlayAttackAnimation(string direction)
+	{
+		animationPlayer.Play("attack" + direction);
+	}
+
+	private void PlayStuckAnimation(string direction)
+	{
+		animationPlayer.Play("stuck" + direction);
+	}
+
+	private void PlayLoopAnimation(string direction)
+	{
+		animationPlayer.Play("attack" + direction + "Loop");
+	}
+
+	private void PlayResetAnimation()
+	{
+		animationPlayer.Play("RESET");
+	}
+
+	private void PlayFlameAttackAnimation(string direction)
+	{
+		flameAnimator.Play("attack" + direction);
+	}
+
+	private void PlayFlameLoopAnimation(string direction)
+	{
+		flameAnimator.Play("attack" + direction + "Loop");
+	}
+
+	private void PlayFlameResetAnimation()
+	{
+		flameAnimator.Play("RESET");
 	}
 }
